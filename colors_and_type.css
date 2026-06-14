@@ -1,0 +1,245 @@
+/* =========================================================
+   Sora Alahmadi Design System
+   Ollama-inspired: pure grayscale, pill geometry, zero shadows
+   ========================================================= */
+
+:root {
+  /* ---------- Color Tokens (raw) ---------- */
+  --black:           #000000;
+  --near-black:      #262626;
+  --darkest-surface: #090909;
+
+  --white:           #ffffff;
+  --snow:            #fafafa;
+  --light-gray:      #e5e5e5;
+  --border-light:    #d4d4d4;
+
+  --button-text-dark:#404040;
+  --mid-gray:        #525252;
+  --stone:           #737373;
+  --silver:          #a3a3a3;
+
+  --ring-blue:       #3b82f6;       /* focus ring only — used at 50% opacity */
+
+  /* The single chromatic accent — used sparingly: wordmark mark, key CTAs, status dots */
+  --gold:            #b8860b;       /* deep, restrained gold (dark goldenrod family) */
+  --gold-soft:       #f5e6b8;       /* tint for backgrounds / borders */
+
+  /* ---------- Semantic Color Tokens ---------- */
+  --bg:              var(--white);
+  --bg-subtle:       var(--snow);
+  --bg-muted:        var(--light-gray);
+  --bg-inverse:      var(--black);
+
+  --fg:              var(--black);
+  --fg-strong:       var(--near-black);
+  --fg-secondary:    var(--mid-gray);
+  --fg-muted:        var(--stone);
+  --fg-subtle:       var(--silver);
+  --fg-on-light:     var(--button-text-dark);
+  --fg-inverse:      var(--white);
+
+  --border:          var(--light-gray);
+  --border-strong:   var(--border-light);
+
+  --focus-ring:      rgba(184, 134, 11, 0.5);  /* gold @ 50% */
+
+  /* ---------- Typography ---------- */
+  --font-display: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --font-body:    "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+                  "Liberation Mono", "Courier New", monospace;
+
+  /* Type scale */
+  --fs-display:    48px;   --lh-display:    1.00;
+  --fs-section:    36px;   --lh-section:    1.11;
+  --fs-subhead:    30px;   --lh-subhead:    1.20;
+  --fs-card-title: 24px;   --lh-card-title: 1.33;
+  --fs-body-lg:    18px;   --lh-body-lg:    1.56;
+  --fs-body:       16px;   --lh-body:       1.50;
+  --fs-caption:    14px;   --lh-caption:    1.43;
+  --fs-small:      12px;   --lh-small:      1.33;
+
+  --fw-regular: 400;
+  --fw-medium:  500;
+
+  /* ---------- Spacing (8px base, with the half-steps the spec calls out) ---------- */
+  --space-1:   4px;
+  --space-1-5: 6px;
+  --space-2:   8px;
+  --space-2-5: 10px;
+  --space-3:   12px;
+  --space-3-5: 14px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-22:  88px;
+  --space-28:  112px;
+
+  /* ---------- Radii (binary system) ---------- */
+  --radius-container: 12px;     /* containers, cards, code blocks */
+  --radius-pill:      9999px;   /* every interactive element */
+
+  /* ---------- Borders ---------- */
+  --border-width: 1px;
+
+  /* ---------- Elevation ---------- */
+  /* No shadows. Ever. Depth = background shift + 1px border. */
+  --shadow-none: none;
+}
+
+/* =========================================================
+   Base elements
+   ========================================================= */
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: var(--fw-regular);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  font-weight: var(--fw-medium);
+  color: var(--fg);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+h2, .h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-section);
+  line-height: var(--lh-section);
+  font-weight: var(--fw-medium);
+  color: var(--fg);
+  margin: 0;
+}
+h3, .h3 {
+  font-family: var(--font-display);
+  font-size: var(--fs-subhead);
+  line-height: var(--lh-subhead);
+  font-weight: var(--fw-medium);
+  color: var(--fg);
+  margin: 0;
+}
+h4, .h4 {
+  font-family: var(--font-body);
+  font-size: var(--fs-card-title);
+  line-height: var(--lh-card-title);
+  font-weight: var(--fw-regular);
+  color: var(--fg);
+  margin: 0;
+}
+p, .body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--fg-strong);
+  margin: 0;
+}
+.body-lg {
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body-lg);
+  color: var(--fg-strong);
+}
+.caption {
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  color: var(--fg-muted);
+}
+.small {
+  font-size: var(--fs-small);
+  line-height: var(--lh-small);
+  color: var(--fg-muted);
+}
+code, .code, pre {
+  font-family: var(--font-mono);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+.code-caption { font-family: var(--font-mono); font-size: var(--fs-caption); line-height: var(--lh-caption); }
+.code-small   { font-family: var(--font-mono); font-size: var(--fs-small);   line-height: 1.63; }
+
+a {
+  color: var(--fg);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+*:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   Component primitives
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2-5) var(--space-6);
+  border-radius: var(--radius-pill);
+  border: var(--border-width) solid transparent;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1;
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  user-select: none;
+}
+.btn-gray   { background: var(--light-gray); color: var(--near-black); border-color: var(--light-gray); }
+.btn-white  { background: var(--white);      color: var(--button-text-dark); border-color: var(--border-light); }
+.btn-black  { background: var(--black);      color: var(--white); border-color: var(--black); }
+
+.input {
+  background: var(--white);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: var(--space-2-5) var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--fg-strong);
+}
+.input::placeholder { color: var(--silver); }
+
+.card {
+  background: var(--white);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-container);
+  padding: var(--space-6);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  background: var(--light-gray);
+  color: var(--near-black);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-small);
+  font-family: var(--font-body);
+}
+
+.tab {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--stone);
+  font-size: var(--fs-body);
+  border: none;
+  cursor: pointer;
+}
+.tab[aria-selected="true"], .tab.is-active {
+  background: var(--light-gray);
+  color: var(--near-black);
+}
