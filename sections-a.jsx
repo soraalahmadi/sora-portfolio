@@ -264,7 +264,7 @@ const Numbers = () => {
 // =========================================================
 const WhatIBring = () => {
   const stats = [
-  { v: 5, prefix: "+", suffix: "", icon: "briefcase", label: "Years in business development", note: "fintech · loyalty · tourism · government sectors" },
+  { v: 5, prefix: "+", suffix: "", icon: "briefcase", label: "Years in business development", note: "Research · Strategies · Tenders & RFPs" },
   { v: 10, prefix: "+", suffix: "", icon: "rocket", label: "High-impact projects shipped", note: "from discovery to launch" },
   { v: "PMI-PBA", icon: "certificate", label: "Certified business analysis professional", note: "license #3188605", format: "text" },
   { v: 4, prefix: "", suffix: "×", icon: "trophy", label: "Outstanding Performance Awards", note: "recognized for delivering exceptional results" }];

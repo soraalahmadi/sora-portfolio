@@ -10,6 +10,9 @@ const PROJECTS = [
   code: "01",
   name: "Resal Pay",
   tag: "fintech · loyalty",
+  logos: [["assets/logos/resalpay.png", "Resal Pay", 1.55]],
+  logoLabel: "Product",
+  highlights: ["Developed and launched a new payment solution", "Enabled loyalty points as a payment method", "Created a new revenue growth opportunity"],
   headline: "Turning loyalty points into a real payment method.",
   overview: "Identified an opportunity, built a product, and enabled a new revenue stream within the ecosystem.",
   problem: "Loyalty points were limited to gift card redemption — low engagement, high volume of unused balances.",
@@ -34,6 +37,14 @@ const PROJECTS = [
   code: "02",
   name: "Loyalty Points Exchange",
   tag: "ecosystem · partnerships",
+  logos: [
+  ["assets/logos/alfursan.webp", "Alfursan"],
+  ["assets/logos/nasmiles.png", "Nasmiles"],
+  ["assets/logos/accor.webp", "Accor"],
+  ["assets/logos/muse.png", "Muse"],
+  ["assets/logos/shukran.png", "Shukran"],
+  ["assets/logos/aura.png", "Aura", 0.82]],
+  highlights: ["6+ loyalty partners integrated", "Enabled cross-program loyalty point conversion", "Expanded customer redemption opportunities"],
   headline: "Connecting loyalty programs into one unified network.",
   overview: "Expanded the platform by enabling users to convert their balance into loyalty program points across selected partners.",
   problem: "Users were limited in how they could use their balance — reduced flexibility and overall usage.",
@@ -58,6 +69,8 @@ const PROJECTS = [
   code: "03",
   name: "Travel & Experiences",
   tag: "tourism · marketplace",
+  logos: [["assets/logos/bookme.png", "Bookme"]],
+  highlights: ["Introduced travel and lifestyle redemption options", "Expanded platform value beyond traditional rewards", "Increased customer engagement and platform usage"],
   headline: "Expanding rewards into travel, hotels, and experiences.",
   overview: "Introduced new redemption categories to enhance user experience and increase platform usage.",
   problem: "Reward options were limited, reducing engagement and overall utilization.",
@@ -81,8 +94,14 @@ const PROJECTS = [
   code: "04",
   name: "Corporate Loyalty & Rewards",
   tag: "government · enterprise",
+  logos: [
+  ["assets/logos/sta.png", "Saudi Tourism Authority", 1.1],
+  ["assets/logos/sdb.webp", "Social Development Bank", 1.46],
+  ["assets/logos/tawuniya.png", "Tawuniya", 0.84],
+  ["assets/logos/aramco.png", "Aramco", 1.3]],
+  highlights: ["Delivered loyalty solutions for government and enterprise clients", "Managed RFPs, RFIs, and tender responses", "Designed customized rewards and engagement programs"],
   headline: "Customized loyalty programs for government and enterprise.",
-  overview: "Developed customized loyalty and rewards programs for government and enterprise clients.",
+  overview: "Customized loyalty and rewards programs for government and enterprise clients.",
   problem: "Organizations lacked flexible and engaging reward systems.",
   opportunity: "Design tailored programs aligned with user needs and business goals.",
   solution: "Delivered end-to-end loyalty platforms and reward solutions.",
@@ -225,8 +244,8 @@ const ProjectCard = ({ p, i, onOpen }) => {
           appearance: "none", textAlign: "left", width: "100%", cursor: "pointer",
           background: dark ? "#f3f2ef" : "#fff",
           border: "1px solid " + (dark ? "#e4e2db" : "#ececec"),
-          borderRadius: 22, padding: "24px 30px 24px",
-          minHeight: 220, display: "flex", flexDirection: "column",
+          borderRadius: 20, padding: "22px 26px",
+          display: "flex", flexDirection: "column",
           transform: dark ? "translateY(-4px)" : "translateY(0)",
           boxShadow: dark ? "0 20px 44px -24px rgba(0,0,0,0.25)" : "0 0 0 rgba(0,0,0,0)",
           transition: "background 320ms cubic-bezier(.2,.6,.2,1), border-color 320ms cubic-bezier(.2,.6,.2,1), transform 320ms cubic-bezier(.2,.6,.2,1), box-shadow 320ms cubic-bezier(.2,.6,.2,1)"
@@ -238,16 +257,31 @@ const ProjectCard = ({ p, i, onOpen }) => {
           width: dark ? 64 : 40
         }} />
         <h3 style={{
-          fontFamily: "var(--font-display)", fontSize: 25, fontWeight: 500,
-          letterSpacing: "-0.018em", lineHeight: 1.15, margin: "14px 0 0",
+          fontFamily: "var(--font-display)", fontSize: 22, fontWeight: 500,
+          letterSpacing: "-0.018em", lineHeight: 1.2, margin: "13px 0 0",
+          minHeight: 30,
           color: "#0a0a0a", transition: "color 320ms linear"
         }}>{p.name}</h3>
         <p style={{
-          fontSize: 14.5, lineHeight: 1.6, margin: "12px 0 0", maxWidth: 320,
+          fontSize: 13.5, lineHeight: 1.5, margin: "10px 0 0", minHeight: 62,
           color: dark ? "#6b6b6b" : "#888", transition: "color 320ms linear"
         }}>{p.overview}</p>
 
-        <div style={{ flex: 1, minHeight: 18 }} />
+        {p.highlights && p.highlights.length > 0 &&
+        <div style={{
+          width: "100%", alignSelf: "stretch", marginTop: 14,
+          display: "flex", flexDirection: "column", gap: 7, marginBottom: 18
+        }}>
+            <div style={{ width: "100%", height: 1, background: dark ? "#e6e4dd" : "#f0f0f0", marginBottom: 16 }} />
+            <div style={{ minHeight: 66, display: "flex", flexDirection: "column", gap: 7 }}>
+              {p.highlights.map((h, k) =>
+            <div key={k} style={{ display: "flex", alignItems: "flex-start", gap: 9 }}>
+                  <span style={{ width: 4.5, height: 4.5, marginTop: 5, borderRadius: 9999, background: "var(--gold)", flexShrink: 0 }} />
+                  <span style={{ fontSize: 11.5, lineHeight: 1.3, letterSpacing: "-0.005em", color: "#3f3f3f", fontWeight: 500 }}>{h}</span>
+                </div>
+            )}
+            </div>
+          </div>}
 
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 16 }}>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
@@ -270,11 +304,82 @@ const ProjectCard = ({ p, i, onOpen }) => {
             transform: dark ? "translate(4px, -4px)" : "translate(0,0)",
             transition: "transform 320ms cubic-bezier(.2,.6,.2,1)"
           }}>
-            <Icon name="arrow-up-right" size={26} color={dark ? "var(--gold)" : "#0a0a0a"} />
+            <Icon name="arrow-up-right" size={23} color={dark ? "var(--gold)" : "#0a0a0a"} />
           </span>
         </div>
       </button>
     </Reveal>);
+
+};
+
+// ---- Client / Partner logo carousel (arrows + dots) ----
+const Chevron = ({ dir }) =>
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    {dir === "left" ? <polyline points="15 18 9 12 15 6" /> : <polyline points="9 18 15 12 9 6" />}
+  </svg>;
+
+const LogoCarousel = ({ logos, label }) => {
+  const [perView, setPerView] = useStateB(4);
+  const [page, setPage] = useStateB(0);
+
+  useEffectB(() => {
+    const calc = () => {
+      const w = window.innerWidth;
+      setPerView(w < 520 ? 1 : w < 760 ? 2 : w < 1080 ? 3 : 4);
+    };
+    calc();
+    window.addEventListener("resize", calc);
+    return () => window.removeEventListener("resize", calc);
+  }, []);
+
+  const pages = Math.max(1, Math.ceil(logos.length / perView));
+  useEffectB(() => { if (page > pages - 1) setPage(pages - 1); }, [pages]);
+  const go = (n) => setPage(Math.max(0, Math.min(pages - 1, n)));
+
+  const arrowBtn = (disabled) => ({
+    width: 30, height: 30, borderRadius: 9999, border: "1px solid #e6e6e6",
+    background: "#fff", color: disabled ? "#d4d4d4" : "#525252",
+    display: "flex", alignItems: "center", justifyContent: "center",
+    cursor: disabled ? "default" : "pointer", flexShrink: 0,
+    transition: "color 200ms, border-color 200ms, background 200ms"
+  });
+
+  return (
+    <div className="detail-row" style={{ padding: "30px 0 6px", borderTop: "1px solid #ececec" }}>
+      <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "#a3a3a3", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 20 }}>{label}</div>
+
+      <div style={{ overflow: "hidden", width: "100%" }}>
+        <div style={{ display: "flex", transition: "transform 520ms cubic-bezier(0.4, 0, 0.1, 1)", transform: `translateX(-${page * 100}%)` }}>
+          {Array.from({ length: pages }).map((_, pi) =>
+            <div key={pi} style={{ flex: "0 0 100%", display: "grid", gridTemplateColumns: `repeat(${perView}, 1fr)`, gap: 16 }}>
+              {logos.slice(pi * perView, pi * perView + perView).map(([src, alt, scale = 1], k) =>
+                <div key={k} style={{
+                  height: 96, display: "flex", alignItems: "center", justifyContent: "center",
+                  background: "#fff", border: "1px solid #ededed", borderRadius: 14,
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.035)", padding: "0 22px"
+                }}>
+                  <img src={src} alt={alt} title={alt} style={{ maxHeight: 27 * scale, maxWidth: 112 * scale, width: "auto", objectFit: "contain" }} />
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 20, marginTop: 22 }}>
+        <button onClick={() => go(page - 1)} disabled={page === 0} aria-label="Previous" style={arrowBtn(page === 0)}><Chevron dir="left" /></button>
+        <div style={{ display: "flex", gap: 12 }}>
+          {Array.from({ length: pages }).map((_, i) =>
+            <button key={i} onClick={() => go(i)} aria-label={`Page ${i + 1}`} style={{
+              width: i === page ? 10 : 8, height: i === page ? 10 : 8, borderRadius: 9999,
+              border: "none", padding: 0, cursor: "pointer",
+              background: i === page ? "var(--gold)" : "#d4d4d4", transition: "background 240ms, width 240ms, height 240ms"
+            }} />
+          )}
+        </div>
+        <button onClick={() => go(page + 1)} disabled={page === pages - 1} aria-label="Next" style={arrowBtn(page === pages - 1)}><Chevron dir="right" /></button>
+      </div>
+    </div>);
 
 };
 
@@ -375,6 +480,10 @@ const ProjectDetail = ({ p, show, onClose }) => {
               )}
             </div>
           </div>
+
+          {/* partners */}
+          {p.logos && p.logos.length > 0 &&
+          <LogoCarousel logos={p.logos} label={p.logoLabel || (p.id === "corporate-loyalty" ? "Clients" : "Partners")} />}
         </div>
       </div>
     </div>);
@@ -418,8 +527,8 @@ const Projects = () => {
       </div>
 
       <div className="projects-grid" style={{
-        display: "grid", gridTemplateColumns: "1fr 1fr", gap: 22,
-        maxWidth: 980, margin: "0 auto", padding: "0 40px"
+        display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18,
+        maxWidth: 900, margin: "0 auto", padding: "0 40px"
       }}>
         {PROJECTS.map((p, i) =>
         <ProjectCard key={p.id} p={p} i={i} onOpen={openDetail} />
@@ -436,9 +545,9 @@ const Projects = () => {
 // =========================================================
 const RECS = [
 {
-  quote: "I've had the pleasure of working with Sora in the Business Development team at Resal, and I can confidently say she is a tremendous asset to any team. Sora brings a strong blend of strategic thinking and execution excellence to everything she does. What stands out most is her ownership and desire to build something impactful. She has a proactive mindset which helps in identifying opportunities and driving partnerships forward.",
-  name: "Abdullah Kort",
-  role: "Senior Manager, Strategic Business Development at Resal",
+  quote: "I had the privilege of working closely with Sora, who reported directly into my team, and I can confidently say she is one of the most naturally talented professionals I've come across in recent years. Sora brings a rare combination of sharp intellect, creativity, and disciplined execution — she doesn't just complete tasks, she elevates them. What truly sets her apart is her ability to think, adapt, and deliver all at once. Give her direction, and she will not only execute — she will enhance, refine, and often outperform expectations. Any organization would be fortunate to have Sora on board. She is not just a strong contributor; she is a future leader in the making. I highly recommend her without hesitation.",
+  name: "Mohammed Al Ramami",
+  role: "Deputy Group Chief Executive Officer at WBHC",
   note: ""
 },
 {
@@ -448,9 +557,9 @@ const RECS = [
   note: ""
 },
 {
-  quote: "I had the privilege of working closely with Sora, who reported directly into my team, and I can confidently say she is one of the most naturally talented professionals I've come across in recent years. Sora brings a rare combination of sharp intellect, creativity, and disciplined execution — she doesn't just complete tasks, she elevates them. What truly sets her apart is her ability to think, adapt, and deliver all at once. Give her direction, and she will not only execute — she will enhance, refine, and often outperform expectations. Any organization would be fortunate to have Sora on board. She is not just a strong contributor; she is a future leader in the making. I highly recommend her without hesitation.",
-  name: "Mohammed Al Ramami",
-  role: "Chief Commercial Officer at Buildmate",
+  quote: "I've had the pleasure of working with Sora in the Business Development team at Resal, and I can confidently say she is a tremendous asset to any team. Sora brings a strong blend of strategic thinking and execution excellence to everything she does. What stands out most is her ownership and desire to build something impactful. She has a proactive mindset which helps in identifying opportunities and driving partnerships forward.",
+  name: "Abdullah Kort",
+  role: "Senior Manager, Strategic Business Development at Resal",
   note: ""
 }];
 
